@@ -1,0 +1,22 @@
+using UnityEngine;
+using System.Collections;
+
+public class Movements : MonoBehaviour
+{
+    public float speed;
+
+    Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector3 move = new Vector3(h * speed, rb.velocity.y, v * speed);
+        rb.AddForce(move);
+    }
+}
