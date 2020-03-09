@@ -4,12 +4,13 @@ using System.Collections;
 public class Movements : MonoBehaviour
 {
     public float speed;
-
+    private int coins;
     Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        coins = 0;
     }
 
     void Update()
@@ -18,5 +19,19 @@ public class Movements : MonoBehaviour
         float v = Input.GetAxis("Vertical");
         Vector3 move = new Vector3(h * speed, rb.velocity.y, v * speed);
         rb.AddForce(move);
+        
+        if (coins >= 44) // 44 is example
+        {
+            // your actions  
+        }
+    }
+    
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Your tag name for coin")
+        {
+            coins++;
+            Destroy(col.gameObject);
+        }
     }
 }
