@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+
+public class Timer : MonoBehaviour
+{
+    public Text timerText;
+    public GameObject panelLose;
+    public GameObject player;
+    
+    void Start()
+    {
+        InvokeRepeating("RunTimer",1,1);
+    }
+    
+    void RunTimer()
+    {
+        if (int.Parse(timerText.text) <= 0)
+        {
+            panelLose.SetActive(true);
+            player.SetActive(false);
+        }
+        timerText.text = (int.Parse(timerText.text)-1).ToString();
+    }
+}
